@@ -38,12 +38,15 @@ OBJECTFILES= \
 	${OBJECTDIR}/Classes.o \
 	${OBJECTDIR}/Client2.o \
 	${OBJECTDIR}/Discovery.o \
+	${OBJECTDIR}/RelayClient.o \
 	${OBJECTDIR}/client1.o \
 	${OBJECTDIR}/config_input.o \
 	${OBJECTDIR}/functions.o \
 	${OBJECTDIR}/jsontest.o \
 	${OBJECTDIR}/latest_Server.o \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/relay_server.grpc.pb.o \
+	${OBJECTDIR}/relay_server.pb.o \
 	${OBJECTDIR}/server.o \
 	${OBJECTDIR}/test.o
 
@@ -87,6 +90,11 @@ ${OBJECTDIR}/Discovery.o: Discovery.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Discovery.o Discovery.cpp
 
+${OBJECTDIR}/RelayClient.o: RelayClient.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RelayClient.o RelayClient.cpp
+
 ${OBJECTDIR}/client1.o: client1.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -116,6 +124,16 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/relay_server.grpc.pb.o: relay_server.grpc.pb.cc
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/relay_server.grpc.pb.o relay_server.grpc.pb.cc
+
+${OBJECTDIR}/relay_server.pb.o: relay_server.pb.cc
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/relay_server.pb.o relay_server.pb.cc
 
 ${OBJECTDIR}/server.o: server.cpp
 	${MKDIR} -p ${OBJECTDIR}

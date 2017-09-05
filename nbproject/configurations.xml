@@ -17,12 +17,18 @@
       <itemPath>Classes.cpp</itemPath>
       <itemPath>Client2.cpp</itemPath>
       <itemPath>Discovery.cpp</itemPath>
+      <itemPath>RelayClient.cpp</itemPath>
       <itemPath>client1.cpp</itemPath>
       <itemPath>config_input.cpp</itemPath>
       <itemPath>functions.cpp</itemPath>
       <itemPath>jsontest.cpp</itemPath>
       <itemPath>latest_Server.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>relay_server.grpc.pb.cc</itemPath>
+      <itemPath>relay_server.grpc.pb.h</itemPath>
+      <itemPath>relay_server.pb.cc</itemPath>
+      <itemPath>relay_server.pb.h</itemPath>
+      <itemPath>relay_server.proto</itemPath>
       <itemPath>server.cpp</itemPath>
       <itemPath>test.cpp</itemPath>
     </logicalFolder>
@@ -59,6 +65,8 @@
       </item>
       <item path="Discovery.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="RelayClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="client1.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="config_input.cpp" ex="false" tool="1" flavor2="0">
@@ -72,6 +80,16 @@
       <item path="latest_Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.grpc.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.grpc.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="relay_server.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="relay_server.proto" ex="false" tool="3" flavor2="0">
       </item>
       <item path="server.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -107,6 +125,8 @@
       </item>
       <item path="Discovery.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="RelayClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="client1.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="config_input.cpp" ex="false" tool="1" flavor2="0">
@@ -120,6 +140,16 @@
       <item path="latest_Server.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.grpc.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.grpc.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="relay_server.pb.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="relay_server.pb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="relay_server.proto" ex="false" tool="3" flavor2="0">
       </item>
       <item path="server.cpp" ex="false" tool="1" flavor2="0">
       </item>
