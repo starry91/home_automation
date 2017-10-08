@@ -7,8 +7,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/praveen/NetBeansProjects/home_automation/RelayServer.proto</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/Classes.cpp</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/RelayServerClient.h</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/Classes.h</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/latest_Server.cpp</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/relay_server.pb.h</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/relay_server.grpc.pb.h</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/Activity.h</file>
             <file>file:/home/praveen/NetBeansProjects/home_automation/functions.cpp</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/Activity.cpp</file>
+            <file>file:/home/praveen/NetBeansProjects/home_automation/functions.h</file>
         </group>
     </open-files>
 </project-private>

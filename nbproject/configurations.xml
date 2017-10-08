@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f1" displayName="Classes" projectFiles="true" kind="ROOT">
+      <itemPath>Activity.cpp</itemPath>
+      <itemPath>Activity.h</itemPath>
+      <itemPath>Appliances.cpp</itemPath>
+      <itemPath>Appliances.h</itemPath>
+      <itemPath>Client.cpp</itemPath>
+      <itemPath>Client.h</itemPath>
+      <itemPath>ClientData.cpp</itemPath>
+      <itemPath>ClientData.h</itemPath>
+      <itemPath>Data.cpp</itemPath>
+      <itemPath>Data.h</itemPath>
+      <itemPath>ExtFunctions.cpp</itemPath>
+      <itemPath>ExtFunctions.h</itemPath>
+      <itemPath>RelayServerClient.cpp</itemPath>
+      <itemPath>RelayServerClient.h</itemPath>
+      <itemPath>Room.cpp</itemPath>
+      <itemPath>Room.h</itemPath>
+      <itemPath>Server.cpp</itemPath>
+      <itemPath>Server.h</itemPath>
+      <itemPath>relay_server.grpc.pb.cc</itemPath>
+      <itemPath>relay_server.grpc.pb.h</itemPath>
+      <itemPath>relay_server.pb.cc</itemPath>
+      <itemPath>relay_server.pb.h</itemPath>
+      <itemPath>relay_server.proto</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
@@ -24,11 +49,6 @@
       <itemPath>jsontest.cpp</itemPath>
       <itemPath>latest_Server.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>relay_server.grpc.pb.cc</itemPath>
-      <itemPath>relay_server.grpc.pb.h</itemPath>
-      <itemPath>relay_server.pb.cc</itemPath>
-      <itemPath>relay_server.pb.h</itemPath>
-      <itemPath>relay_server.proto</itemPath>
       <itemPath>server.cpp</itemPath>
       <itemPath>test.cpp</itemPath>
     </logicalFolder>
@@ -57,15 +77,51 @@
           <standard>11</standard>
         </ccTool>
       </compileType>
+      <item path="Activity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Appliances.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Appliances.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Classes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Classes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Client.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Client.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Client2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ClientData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ClientData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Data.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Data.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Discovery.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="ExtFunctions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtFunctions.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="RelayClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RelayServerClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RelayServerClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Room.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Room.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Server.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="client1.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -117,15 +173,51 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Activity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Activity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Appliances.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Appliances.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Classes.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Classes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Client.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Client.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Client2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ClientData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ClientData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Data.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Data.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Discovery.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="ExtFunctions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ExtFunctions.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="RelayClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RelayServerClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RelayServerClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Room.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Room.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Server.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="client1.cpp" ex="false" tool="1" flavor2="0">
       </item>

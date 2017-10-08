@@ -35,10 +35,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Activity.o \
+	${OBJECTDIR}/Appliances.o \
 	${OBJECTDIR}/Classes.o \
+	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/Client2.o \
+	${OBJECTDIR}/ClientData.o \
+	${OBJECTDIR}/Data.o \
 	${OBJECTDIR}/Discovery.o \
+	${OBJECTDIR}/ExtFunctions.o \
 	${OBJECTDIR}/RelayClient.o \
+	${OBJECTDIR}/RelayServerClient.o \
+	${OBJECTDIR}/Room.o \
+	${OBJECTDIR}/Server.o \
 	${OBJECTDIR}/client1.o \
 	${OBJECTDIR}/config_input.o \
 	${OBJECTDIR}/functions.o \
@@ -75,25 +84,70 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Activity.o: Activity.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Activity.o Activity.cpp
+
+${OBJECTDIR}/Appliances.o: Appliances.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Appliances.o Appliances.cpp
+
 ${OBJECTDIR}/Classes.o: Classes.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Classes.o Classes.cpp
+
+${OBJECTDIR}/Client.o: Client.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
 
 ${OBJECTDIR}/Client2.o: Client2.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client2.o Client2.cpp
 
+${OBJECTDIR}/ClientData.o: ClientData.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ClientData.o ClientData.cpp
+
+${OBJECTDIR}/Data.o: Data.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Data.o Data.cpp
+
 ${OBJECTDIR}/Discovery.o: Discovery.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Discovery.o Discovery.cpp
 
+${OBJECTDIR}/ExtFunctions.o: ExtFunctions.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ExtFunctions.o ExtFunctions.cpp
+
 ${OBJECTDIR}/RelayClient.o: RelayClient.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RelayClient.o RelayClient.cpp
+
+${OBJECTDIR}/RelayServerClient.o: RelayServerClient.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RelayServerClient.o RelayServerClient.cpp
+
+${OBJECTDIR}/Room.o: Room.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Room.o Room.cpp
+
+${OBJECTDIR}/Server.o: Server.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
 
 ${OBJECTDIR}/client1.o: client1.cpp
 	${MKDIR} -p ${OBJECTDIR}

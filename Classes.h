@@ -107,6 +107,7 @@ public:
     Data();
     void addRoom(std::string name);
     Room& getRoom(std::string name);
+    int read_from_config(Json::Value& json_data);
     //friend std::ostream& operator<< (std::ostream &out, const Data &data);
 };
 
@@ -152,6 +153,17 @@ private:
     std::unique_ptr<py_server::RelayServer::Stub> stub_;
 };
 
+class Activity {
+private:
+    fd_set readfds; 
+public:
+    Activity();
+    void set_active_descriptors(const int& udp_descriptor,const int& tcp_descriptor, ClientData& client_data);
+    void wait_for_activity(ClientData& client_data);
+    void check_udp_activity_and_respond(UDPServer& udp);
+    void check_tcp_activity_and_respond(TCPServer& tcp, ClientData& client_data, Data& data, const Json::Value json_data);
+    int check_client_activity_update_and_respond(ClientData& client_data, Data& data, Json::Value& json_data, int client_sd);  
+};
 
 
 

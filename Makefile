@@ -16,7 +16,7 @@ vpath %.proto $(PROTOS_PATH)
 
 #all: system-check greeter_client greeter_server greeter_async_client greeter_async_client2 greeter_async_server
 
-main_server: latest_Server.o relay_server.pb.o relay_server.grpc.pb.o functions.o Classes.o 
+main_server: latest_Server.o relay_server.pb.o relay_server.grpc.pb.o Activity.o Appliances.o Client.o ClientData.o Data.o RelayServerClient.o Room.o Server.o ExtFunctions.o
 	$(CXX) $^ $(LDFLAGS) -o $@
 
 clean : 
