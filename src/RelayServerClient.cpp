@@ -12,7 +12,7 @@
  */
 
 #include "RelayServerClient.h"
-#include "relay_server.pb.h"
+#include "proto/relay_server.pb.h"
 #include <grpc++/grpc++.h>
 
 RelayServerClient::RelayServerClient(std::shared_ptr<grpc::Channel> channel)

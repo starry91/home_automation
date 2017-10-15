@@ -19,7 +19,7 @@
 #include "ClientData.h"
 #include "Server.h"
 #include "Data.h"
-#include "relay_server.grpc.pb.h"
+#include "proto/relay_server.grpc.pb.h"
 
 class Activity {
 private:

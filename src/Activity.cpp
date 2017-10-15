@@ -14,7 +14,6 @@
 #include "Activity.h"
 #include "ExtFunctions.h"
 #include "RelayServerClient.h"
-#include "relay_server.grpc.pb.h"
 #include <grpc++/grpc++.h>
 
 Activity::Activity(){};
