@@ -35,29 +35,18 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Activity.o \
-	${OBJECTDIR}/Appliances.o \
-	${OBJECTDIR}/Classes.o \
-	${OBJECTDIR}/Client.o \
-	${OBJECTDIR}/Client2.o \
-	${OBJECTDIR}/ClientData.o \
-	${OBJECTDIR}/Data.o \
-	${OBJECTDIR}/Discovery.o \
-	${OBJECTDIR}/ExtFunctions.o \
-	${OBJECTDIR}/RelayClient.o \
-	${OBJECTDIR}/RelayServerClient.o \
-	${OBJECTDIR}/Room.o \
-	${OBJECTDIR}/Server.o \
-	${OBJECTDIR}/client1.o \
-	${OBJECTDIR}/config_input.o \
-	${OBJECTDIR}/functions.o \
-	${OBJECTDIR}/jsontest.o \
-	${OBJECTDIR}/latest_Server.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/relay_server.grpc.pb.o \
-	${OBJECTDIR}/relay_server.pb.o \
-	${OBJECTDIR}/server.o \
-	${OBJECTDIR}/test.o
+	${OBJECTDIR}/autogen_files/proto/relay_server.grpc.pb.o \
+	${OBJECTDIR}/autogen_files/proto/relay_server.pb.o \
+	${OBJECTDIR}/src/Activity.o \
+	${OBJECTDIR}/src/Appliances.o \
+	${OBJECTDIR}/src/Client.o \
+	${OBJECTDIR}/src/ClientData.o \
+	${OBJECTDIR}/src/Data.o \
+	${OBJECTDIR}/src/ExtFunctions.o \
+	${OBJECTDIR}/src/RelayServerClient.o \
+	${OBJECTDIR}/src/Room.o \
+	${OBJECTDIR}/src/Server.o \
+	${OBJECTDIR}/src/latest_Server.o
 
 
 # C Compiler Flags
@@ -84,120 +73,65 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/Activity.o: Activity.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/autogen_files/proto/relay_server.grpc.pb.o: autogen_files/proto/relay_server.grpc.pb.cc
+	${MKDIR} -p ${OBJECTDIR}/autogen_files/proto
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Activity.o Activity.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/autogen_files/proto/relay_server.grpc.pb.o autogen_files/proto/relay_server.grpc.pb.cc
 
-${OBJECTDIR}/Appliances.o: Appliances.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/autogen_files/proto/relay_server.pb.o: autogen_files/proto/relay_server.pb.cc
+	${MKDIR} -p ${OBJECTDIR}/autogen_files/proto
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Appliances.o Appliances.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/autogen_files/proto/relay_server.pb.o autogen_files/proto/relay_server.pb.cc
 
-${OBJECTDIR}/Classes.o: Classes.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Activity.o: src/Activity.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Classes.o Classes.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Activity.o src/Activity.cpp
 
-${OBJECTDIR}/Client.o: Client.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Appliances.o: src/Appliances.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client.o Client.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Appliances.o src/Appliances.cpp
 
-${OBJECTDIR}/Client2.o: Client2.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Client.o: src/Client.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Client2.o Client2.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Client.o src/Client.cpp
 
-${OBJECTDIR}/ClientData.o: ClientData.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/ClientData.o: src/ClientData.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ClientData.o ClientData.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/ClientData.o src/ClientData.cpp
 
-${OBJECTDIR}/Data.o: Data.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Data.o: src/Data.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Data.o Data.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Data.o src/Data.cpp
 
-${OBJECTDIR}/Discovery.o: Discovery.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/ExtFunctions.o: src/ExtFunctions.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Discovery.o Discovery.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/ExtFunctions.o src/ExtFunctions.cpp
 
-${OBJECTDIR}/ExtFunctions.o: ExtFunctions.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/RelayServerClient.o: src/RelayServerClient.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ExtFunctions.o ExtFunctions.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/RelayServerClient.o src/RelayServerClient.cpp
 
-${OBJECTDIR}/RelayClient.o: RelayClient.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Room.o: src/Room.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RelayClient.o RelayClient.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Room.o src/Room.cpp
 
-${OBJECTDIR}/RelayServerClient.o: RelayServerClient.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Server.o: src/Server.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RelayServerClient.o RelayServerClient.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Server.o src/Server.cpp
 
-${OBJECTDIR}/Room.o: Room.cpp
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/latest_Server.o: src/latest_Server.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Room.o Room.cpp
-
-${OBJECTDIR}/Server.o: Server.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Server.o Server.cpp
-
-${OBJECTDIR}/client1.o: client1.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/client1.o client1.cpp
-
-${OBJECTDIR}/config_input.o: config_input.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/config_input.o config_input.cpp
-
-${OBJECTDIR}/functions.o: functions.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/functions.o functions.cpp
-
-${OBJECTDIR}/jsontest.o: jsontest.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/jsontest.o jsontest.cpp
-
-${OBJECTDIR}/latest_Server.o: latest_Server.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/latest_Server.o latest_Server.cpp
-
-${OBJECTDIR}/main.o: main.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
-
-${OBJECTDIR}/relay_server.grpc.pb.o: relay_server.grpc.pb.cc
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/relay_server.grpc.pb.o relay_server.grpc.pb.cc
-
-${OBJECTDIR}/relay_server.pb.o: relay_server.pb.cc
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/relay_server.pb.o relay_server.pb.cc
-
-${OBJECTDIR}/server.o: server.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/server.o server.cpp
-
-${OBJECTDIR}/test.o: test.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/test.o test.cpp
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/latest_Server.o src/latest_Server.cpp
 
 # Subprojects
 .build-subprojects:

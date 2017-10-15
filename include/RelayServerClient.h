@@ -24,11 +24,7 @@
 #include <stdlib.h>
 #include <vector>
 
-#ifdef BAZEL_BUILD
-#include "examples/protos/helloworld.grpc.pb.h"
-#else
-#include "relay_server.grpc.pb.h"
-#endif
+#include "proto/relay_server.grpc.pb.h"
 
 class RelayServerClient {
 public:
