@@ -67,11 +67,11 @@ LDLIBSOPTIONS=-L/usr/local/lib64
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/home_automation ${OBJECTFILES} ${LDLIBSOPTIONS} -lgrpc++ -lprotobuf -lpthread -lz -lgrpc++_unsecure -lgrpc_unsecure -lgpr -lgrpc_csharp_ext -ljsoncpp
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cpp ${OBJECTFILES} ${LDLIBSOPTIONS} -lgrpc++ -lprotobuf -lpthread -lz -lgrpc++_unsecure -lgrpc_unsecure -lgpr -lgrpc_csharp_ext -ljsoncpp
 
 ${OBJECTDIR}/autogen_files/proto/relay_server.grpc.pb.o: autogen_files/proto/relay_server.grpc.pb.cc
 	${MKDIR} -p ${OBJECTDIR}/autogen_files/proto
