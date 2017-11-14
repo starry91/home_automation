@@ -92,7 +92,7 @@ int Activity::check_client_activity_update_and_respond(ClientData& client_data, 
     Json::Reader reader;
     Json::Value sig_change;
     Json::FastWriter stream;
-    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("localhost:50051"), grpc::InsecureChannelCredentials()));
+    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("192.168.0.104:50051"), grpc::InsecureChannelCredentials()));
     if (FD_ISSET(client_sd, &readfds)) {
         char read_buf[256];
         std::cout << "fdisset" << std::endl;
@@ -124,10 +124,10 @@ int Activity::check_client_activity_update_and_respond(ClientData& client_data, 
             std::cout << appliance_name << std::endl;
             int state = (*it).asInt();
             if (appliance_type == "lights") {
-                room.setLightState(appliance_name, state);
+                //room.setLightState(appliance_name, state);
                 json_data[room_name]["lights"][appliance_name] = state;
             } else if (appliance_type == "fans") {
-                room.setFanState(appliance_name, state);
+                //room.setFanState(appliance_name, state);
                 json_data[room_name]["fans"][appliance_name] = state;
             } else {
                 std::cout << "error" << std::endl;

@@ -17,6 +17,10 @@ void Appliance::setName(std::string s) {
     name = s;
 }
 
+std::string Appliance::getName() {
+    return name;
+}
+
 void Appliance::setState(State n) {
     if (Appliance::State::OFF <= n && Appliance::State::ON >= n)
         state = n;
@@ -25,21 +29,20 @@ void Appliance::setState(State n) {
     }
 }
 
-std::string Appliance::getName() {
-    return name;
-}
-
 int Appliance::getState() {
     return static_cast<int> (state);
 }
 
-Appliance::Appliance(std::string s, State n) {
+void Appliance::setType(std::string s) {
+    type = s;
+}
+
+std::string Appliance::getType() {
+    return type;
+}
+
+Appliance::Appliance(std::string s, State n, std::string type = "None") {
     this->name = s;
     this->setState(n);
-}
-
-Light::Light(std::string s, State n) : Appliance(s, n) {
-}
-
-Fan::Fan(std::string s, State n) : Appliance(s, n) {
+    this->type = type;
 }

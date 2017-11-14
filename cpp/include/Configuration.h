@@ -5,16 +5,18 @@
  */
 
 /* 
- * File:   Server.h
+ * File:   Configuration.h
  * Author: praveen
  *
- * Created on September 6, 2017, 10:28 PM
+ * Created on November 13, 2017, 10:31 PM
  */
 
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef CONFIGURATION_H
+#define CONFIGURATION_H
 
-int UDPListenAndRespond(int port_number);
+#include <Data.h>
 
-#endif /* SERVER_H */
+Data read_from_config();
+
+#endif /* CONFIGURATION_H */
 

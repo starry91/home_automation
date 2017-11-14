@@ -16,12 +16,12 @@
 
 #include <iostream>
 #include <string>
-#include <sys/types.h>          /* See NOTES */
+/*#include <sys/types.h>
 #include <sys/socket.h>
 #include <cstring>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>*/
 #include <vector>
 
 #include "Appliances.h"
@@ -29,8 +29,8 @@
 class Room {
 private:
     std::string room_name;
-    std::vector<Light> light;
-    std::vector<Fan> fan;
+    std::vector<Appliance> appliances;
+
 public:
 
     enum class State {
@@ -39,13 +39,13 @@ public:
     };
     Room(const std::string room_Name);
     std::string getRoomName();
-    int getLightState(std::string name);
-    int getFanState(std::string name);
     void setRoomName(std::string name);
-    void addLight(std::string name, int state = 0);
-    void addFan(std::string name, int state = 0);
-    void setFanState(std::string name, int state);
-    void setLightState(std::string name, int state);
+    void addAppliance(std::string name, std::string type, int state = 0);
+    int getApplianceState(std::string name);
+    void setApplianceState(std::string name, int state);
+    std::vector<Appliance>::iterator iter_begin_appliance();
+    std::vector<Appliance>::iterator iter_end_appliance();
+
 };
 
 #endif /* ROOM_H */

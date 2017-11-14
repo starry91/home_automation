@@ -34,13 +34,13 @@ package py_server;
 // The greeting service definition.
 service RelayServer {
     // gets state of appliance
-    rpc get_state (Details) returns (State) {}
+    rpc get_state (Data) returns (State) {}
     //sets state of appliance
-    rpc set_state (Details) returns (Response) {}
+    rpc set_state (Data) returns (Response) {}
 }
 
 // The request message containing the user's name.
-message Details {
+message Data {
     string room_name = 1;
     string appliance_type = 2;
     string appliance_name = 3;
@@ -55,5 +55,3 @@ message State {
 message Response {
     int32 value = 1;
 }
-
-

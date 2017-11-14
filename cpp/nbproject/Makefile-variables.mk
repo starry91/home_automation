@@ -9,16 +9,16 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=cpp
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/cpp
+CND_ARTIFACT_NAME_Debug=home_server
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/home_server
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
 CND_PACKAGE_NAME_Debug=cpp.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/cpp.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=cpp
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/cpp
+CND_ARTIFACT_NAME_Release=home_server
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/home_server
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
 CND_PACKAGE_NAME_Release=cpp.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/cpp.tar

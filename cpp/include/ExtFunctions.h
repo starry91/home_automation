@@ -18,13 +18,13 @@
 #include <string>
 #include <sstream>
 #include <cstring>
-#include <unistd.h>
+/*#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <ctype.h>
 #include <algorithm>
-#include <unistd.h>
+#include <unistd.h>*/
 
 std::string &ltrim(std::string &s);
 

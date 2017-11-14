@@ -1,5 +1,3 @@
-/build/
-/dist/
-autogen_files/
-/cpp/build/
-/cpp/dist/
+cpp/autogen_files/
+cpp/build/
+cpp/dist/

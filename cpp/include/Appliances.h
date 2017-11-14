@@ -16,12 +16,12 @@
 
 #include <iostream>
 #include <string>
-#include <sys/types.h>          /* See NOTES */
+/*#include <sys/types.h>       
 #include <sys/socket.h>
 #include <cstring>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>*/
 #include <vector>
 
 class Appliance {
@@ -34,25 +34,18 @@ public:
 protected:
     std::string name; //name of the appliance
     State state; //state of the appliance
+    std::string type;
 
 public:
-
+    Appliance(std::string s, State n, std::string type);
     void setName(std::string s);
-    void setState(State n);
     std::string getName();
+    void setState(State n);
     int getState();
-    Appliance(std::string s, State n);
+    void setType(std::string s);
+    std::string getType();
 };
 
-class Light : public Appliance {
-public:
-    Light(std::string s = "abc", Light::State n = State::OFF);
-};
-
-class Fan : public Appliance {
-public:
-    Fan(std::string s = "abc", Fan::State n = State::OFF);
-};
 
 #endif /* APPLIANCES_H */
 

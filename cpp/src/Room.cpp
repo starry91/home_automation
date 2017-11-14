@@ -21,39 +21,28 @@ std::string Room::getRoomName() {
     return room_name;
 }
 
-int Room::getLightState(std::string name) {
-    for (std::vector<Light>::iterator it = light.begin(); it != light.end(); ++it) {
-        Light temp = *it;
+int Room::getApplianceState(std::string name) {
+    for (std::vector<Appliance>::iterator it = appliances.begin(); it != appliances.end(); ++it) {
+        Appliance temp = *it;
         if (temp.getName() == name)
             return temp.getState();
     };
     return -1;
 }
 
-int Room::getFanState(std::string name) {
-    for (std::vector<Fan>::iterator it = fan.begin(); it != fan.end(); ++it) {
-        Fan temp = *it;
-        if (temp.getName() == name)
-            return temp.getState();
-    }
-    return -1;
-}
 
 void Room::setRoomName(std::string room_Name) {
     room_name = room_Name;
 }
 
-void Room::addLight(std::string name, int state) {
-    light.push_back(Light(name, Light::State(state)));
+void Room::addAppliance(std::string name, std::string type, int state) {
+    appliances.push_back(Appliance(name, Appliance::State(state), type));
 }
 
-void Room::addFan(std::string name, int state) {
-    fan.push_back(Fan(name, Fan::State(state)));
-}
 
-void Room::setFanState(std::string name, int state) {
-    for (std::vector<Fan>::iterator it = fan.begin(); it != fan.end(); ++it) {
-        Fan& temp = *it;
+void Room::setApplianceState(std::string name, int state) {
+    for (std::vector<Appliance>::iterator it = appliances.begin(); it != appliances.end(); ++it) {
+        Appliance& temp = *it;
         if (temp.getName() == name) {
             temp.setState(Appliance::State(state));
             break;
@@ -62,14 +51,11 @@ void Room::setFanState(std::string name, int state) {
     }
 }
 
-void Room::setLightState(std::string name, int state) {
-    for (std::vector<Light>::iterator it = light.begin(); it != light.end(); ++it) {
-        Light& temp = *it;
-        if (temp.getName() == name) {
-            temp.setState(Appliance::State(state));
-            break;
-        }
+std::vector<Appliance>::iterator Room::iter_begin_appliance() {
+    return appliances.begin();
+}
 
-    }
+std::vector<Appliance>::iterator Room::iter_end_appliance() {
+    return appliances.end();
 }
 

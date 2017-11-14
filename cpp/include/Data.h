@@ -16,14 +16,13 @@
 
 #include <iostream>
 #include <string>
-#include <sys/types.h>          /* See NOTES */
+/*#include <sys/types.h>         
 #include <sys/socket.h>
 #include <cstring>
 #include <netinet/in.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>*/
 #include <vector>
-#include <json/json.h>
 
 #include "Room.h"
 
@@ -34,7 +33,8 @@ public:
     Data();
     void addRoom(std::string name);
     Room& getRoom(std::string name);
-    int read_from_config(Json::Value& json_data);
+    std::vector<Room>::iterator iter_begin_data();
+    std::vector<Room>::iterator iter_end_data();
     //friend std::ostream& operator<< (std::ostream &out, const Data &data);
 };
 

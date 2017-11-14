@@ -12,6 +12,9 @@
  */
 
 #include "ExtFunctions.h" 
+#include <algorithm>
+
+
 std::string &ltrim(std::string &s) {
     s.erase(s.begin(),
             find_if_not(s.begin(), s.end(), [](int c) {

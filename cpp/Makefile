@@ -60,6 +60,8 @@ build: .build-post
 	mkdir autogen_files || exit 0 # ignore failures
 	$(PROTOCC) proto/relay_server.proto --cpp_out=autogen_files\
 	       	--grpc_out=autogen_files --plugin=protoc-gen-grpc=$(cpp_plugin)
+	$(PROTOCC) proto/AppToCppServer.proto --cpp_out=autogen_files\
+	       	--grpc_out=autogen_files --plugin=protoc-gen-grpc=$(cpp_plugin)
 
 .build-post: .build-impl
 # Add your post 'build' code here...
