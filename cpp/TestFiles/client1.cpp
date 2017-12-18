@@ -17,11 +17,15 @@
 
 using grpc::Channel;
 using grpc::ClientContext;
+using grpc::ClientReader;
+using grpc::ClientReaderWriter;
+using grpc::ClientWriter;
 using grpc::Status;
 using app_cpp_server::rpcData;
 using app_cpp_server::rpcHouse;
 using app_cpp_server::rpcRoom;
 using app_cpp_server::rpcAppliance;
+using app_cpp_server::rpcResponse;
 
 class Client {
 private:
@@ -46,63 +50,94 @@ public:
         // The actual RPC.
         grpc::Status status = stub_->get_all(&context, request, &reply);
         // Act upon its status.
-            return reply;
+        return reply;
+    }
+
+    rpcResponse set_state(const std::string id, std::string room_name, std::string app_type,
+            std::string app_name, int state) {
+        // Data we are sending to the server.
+        app_cpp_server::rpcData request;
+        request.set_id(id);
+        request.set_room_name(room_name);
+        request.set_appliance_type(app_type);
+        request.set_appliance_name(app_name);
+        request.set_state(state);
+
+        // Container for the data we expect from the server.
+        app_cpp_server::rpcResponse reply;
+
+        // Context for the client. It could be used to convey extra information to
+        // the server and/or tweak certain RPC behaviors.
+        grpc::ClientContext context;
+
+        // The actual RPC.
+        grpc::Status status = (*stub_).set_state(&context, request, &reply);
+        // Act upon its status.
+        return reply;
+    }
+
+    void notification(const std::string id) {
+        // Data we are sending to the server.
+        app_cpp_server::rpcId request;
+        request.set_id(id);
+
+        // Container for the data we expect from the server.
+        app_cpp_server::rpcData reply;
+
+        // Context for the client. It could be used to convey extra information to
+        // the server and/or tweak certain RPC behaviors.
+        grpc::ClientContext context;
+        std::unique_ptr<ClientReader<rpcData> > reader(stub_->notification(&context, request));
+        // The actual RPC.
+        std::cout << "before while " << std::endl;
+        while (reader->Read(&reply)) { 
+            std::cout << "Got "
+                    << reply.appliance_type() << " with name "
+                    << reply.appliance_name() << " and state = "
+                    << reply.state() << std::endl;
+        }
+        
+        Status status = reader->Finish();
+        if (status.ok()) {
+            std::cout << "notification rpc succeeded." << std::endl;
+        } else {
+            std::cout << "notification rpc failed." << std::endl;
+        }
     }
 };
 
 int main(int argc, char *argv[]) {
-//    int sockfd = 0, n = 0, udp_sock = 0, broadcastOn = 1, broadcast_msg_len;
-//    char recvBuff[1024];
-//    char *broadcast = "192.168.0.255", *broadcast_msg = "Hi";
-//    struct sockaddr_in serv_addr, remote_addr;
-//    broadcast_msg_len = strlen(broadcast_msg);
-//    /*if(argc != 2)
-//    {
-//        printf("\n Usage: %s <ip of server> \n",argv[0]);
-//        return 1;
-//    }*/
-//
-//    bzero((char *) recvBuff, sizeof (recvBuff));
-//
-//    if ((udp_sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-//        printf("\n Error : Could not create udp socket \n");
-//        return 1;
-//    }
-//    if (setsockopt(udp_sock, SOL_SOCKET, SO_BROADCAST, &broadcastOn, 4) == -1)
-//        perror("Error: setsockopt call failed");
-//    remote_addr.sin_family = AF_INET;
-//    remote_addr.sin_port = htons(8089);
-//    remote_addr.sin_addr.s_addr = inet_addr(broadcast);
-//
-//    if (sendto(udp_sock, broadcast_msg, broadcast_msg_len, 0, (struct sockaddr *) &remote_addr, sizeof (remote_addr)) == -1) {
-//        perror("Error: sendto call failed");
-//    }
-//    std::cout << "done" << std::endl;
-//    unsigned int serverlen = sizeof (serv_addr);
-//    if (recvfrom(udp_sock, recvBuff, 1024, 0, (struct sockaddr *) &serv_addr, &serverlen) == -1)
-//        perror("Error: recvfrom call failed");
-//
-//    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-//        printf("\n Error : Could not create TCP socket \n");
-//        return 1;
-//    }
-//    std::cout << inet_ntoa(serv_addr.sin_addr) << std::endl;
 
     Client greeter(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-    std::string user("192.168.0.103");
+    std::string user("192.168.0.107");
     rpcHouse reply = greeter.get_all(user);
-    for(int i = 0; i < reply.room_size(); i++) {
+    for (int i = 0; i < reply.room_size(); i++) {
         rpcRoom room = reply.room(i);
-        for(int j = 0; j < room.appliance_size(); j++) {
-           rpcAppliance app = room.appliance(j);
-           std::cout << room.room_name() << std::endl;
-           std::cout << app.app_name() << std::endl;
-           std::cout << app.app_type() << std::endl;
-           std::cout << app.app_state() << std::endl;
+        for (int j = 0; j < room.appliance_size(); j++) {
+            rpcAppliance app = room.appliance(j);
+            std::cout << room.room_name() << std::endl;
+            std::cout << app.app_name() << std::endl;
+            std::cout << app.app_type() << std::endl;
+            std::cout << app.app_state() << std::endl;
         }
         std::cout << std::endl;
     }
-    
+    greeter.notification(user);
+    greeter.set_state(user, "hall", "light", "light1", 1);
+    reply = greeter.get_all(user);
+    for (int i = 0; i < reply.room_size(); i++) {
+        rpcRoom room = reply.room(i);
+        for (int j = 0; j < room.appliance_size(); j++) {
+            rpcAppliance app = room.appliance(j);
+            std::cout << room.room_name() << std::endl;
+            std::cout << app.app_name() << std::endl;
+            std::cout << app.app_type() << std::endl;
+            std::cout << app.app_state() << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
+
 
     return 0;
 }

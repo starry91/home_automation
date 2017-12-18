@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <arpa/inet.h>
 
 
 int UDPListenAndRespond(int port_number) {
@@ -50,16 +51,19 @@ int UDPListenAndRespond(int port_number) {
         int len;
         char udp_buf[1024];
         struct sockaddr_in cli_addr;
-        socklen_t clilen;
+        socklen_t clilen = sizeof(cli_addr);
         bzero((char *) &cli_addr, sizeof(cli_addr));
+        std::cout << inet_ntoa(cli_addr.sin_addr) <<std::endl << clilen << std::endl;
         if ((len = recvfrom(sock_descriptor, udp_buf, sizeof (udp_buf), 0, (struct sockaddr*) &cli_addr, &clilen)) <= 0) {
             perror("Error: recvfrom call failed");
         }
         udp_buf[len] = '\0';
         std::string temp(udp_buf);
         std::cout << temp << std::endl;
-        if (trim(temp) == "Hi") {
-            if (sendto(sock_descriptor, (char*) "xyz", 3, 0, (struct sockaddr*) &cli_addr, sizeof (cli_addr)) == -1) {
+        if (trim(temp) == "DISCOVER_SERVER_REQUEST") {
+            char buf[] = "HI";
+            std::cout << sock_descriptor << std::endl << inet_ntoa(cli_addr.sin_addr) << std::endl << clilen << std::endl;
+            if (sendto(sock_descriptor, buf, strlen(buf), 0, (struct sockaddr*) &cli_addr, clilen) == -1) {
                 perror("Error: sendto call failed");
             }
         }

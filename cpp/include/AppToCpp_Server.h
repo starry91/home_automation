@@ -28,7 +28,6 @@
 class AppToCppGrpcServer final : public app_cpp_server::AppCppServer::Service {
 private:
     Data data;
-    //int udp_sd;
 public:
     AppToCppGrpcServer(Data& d);
     void start_UDP_server();

@@ -54,17 +54,19 @@ grpc::Status AppToCppGrpcServer::get_all(::grpc::ServerContext* context, const a
 
 grpc::Status AppToCppGrpcServer::notification(::grpc::ServerContext* context, const ::app_cpp_server::rpcId* request,
             ::grpc::ServerWriter< ::app_cpp_server::rpcData>* writer) {
-    std::unique_lock<std::mutex> qlock_list(queuemutex_list);
-    cv_list.wait_for(qlock_list, std::chrono::seconds(1)); 
-    client_list.push_front(request->id());
-    qlock_list.unlock();
-    cv_list.notify_all();
+    {
+        std::lock_guard<std::mutex> qlock_list(queuemutex_list);
+        client_list.push_front(request->id());
+    }
     
     app_cpp_server::rpcData check;
     while(1) {
-        if(!google::protobuf::util::MessageDifferencer::Equals(check, rpcdata.front())) {
-            std::unique_lock<std::mutex> qlock(queuemutex_data);
-            cv_data.wait_for(qlock, std::chrono::seconds(1));
+        std::unique_lock<std::mutex> qlock(queuemutex_data);
+        cv_data.wait_for(qlock, std::chrono::seconds(1));
+        std::cout << "size of rpcdata is " << rpcdata.size() << std::endl;
+        std::cout << "printing rpc empty " << rpcdata.empty() << std::endl;
+        //cv_data.wait(qlock);
+        if(!rpcdata.empty() && !google::protobuf::util::MessageDifferencer::Equals(check, rpcdata.front())) {
             check = rpcdata.front();
             if(check.id() != request->id()) {          
                 writer->Write(check);
@@ -78,13 +80,14 @@ grpc::Status AppToCppGrpcServer::notification(::grpc::ServerContext* context, co
 
 grpc::Status AppToCppGrpcServer::set_state(::grpc::ServerContext* context, const ::app_cpp_server::rpcData* request, 
         ::app_cpp_server::rpcResponse* response) {
-    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("192.168.0.104:50051"), grpc::InsecureChannelCredentials()));
+    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("192.168.0.103:50051"), grpc::InsecureChannelCredentials()));
     int exit_state = RelayServer.set_state(request->room_name(), request->appliance_type(), request->appliance_name(), request->state());
     if(exit_state == 0) {
         {
             std::lock_guard<std::mutex> qlock(queuemutex_data);
             rpcdata.push(*request);
-            rpcdata.pop();
+            while(rpcdata.size() > 1)
+                rpcdata.pop();
         }
         for(std::vector<Room>::iterator it_room = data.iter_begin_data(); it_room != data.iter_end_data(); it_room++) {
             Room& room = *it_room;
