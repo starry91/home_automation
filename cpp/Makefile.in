@@ -297,7 +297,6 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-tmp_protogen_dir = generated
 SUBDIRS = src
 all: all-recursive
 
@@ -753,18 +752,6 @@ uninstall-am:
 
 .PRECIOUS: Makefile
 
-all-am: gen_proto_files
-gen_proto_files:
-	mkdir ${tmp_protogen_dir}
-	protoc --cpp_out=${tmp_protogen_dir} --grpc_out=${tmp_protogen_dir} --plugin=protoc-gen-grpc=/usr/local/bin/grpc_cpp_plugin -Iproto AppToCppServer.proto relay_server.proto
-	mv ${tmp_protogen_dir}/AppToCppServer.grpc.pb.h include/
-	mv ${tmp_protogen_dir}/AppToCppServer.pb.h include/
-	mv ${tmp_protogen_dir}/relay_server.grpc.pb.h include/
-	mv ${tmp_protogen_dir}/relay_server.pb.h include/
-	mv ${tmp_protogen_dir}/AppToCppServer.grpc.pb.cc src/
-	mv ${tmp_protogen_dir}/AppToCppServer.pb.cc src/
-	mv ${tmp_protogen_dir}/relay_server.grpc.pb.cc src/
-	mv ${tmp_protogen_dir}/relay_server.pb.cc src/
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
