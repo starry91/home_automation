@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "proto/relay_server.grpc.pb.h"
+#include "relay_server.grpc.pb.h"
 
 class RelayServerClient {
 public:

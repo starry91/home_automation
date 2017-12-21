@@ -12,7 +12,7 @@
  */
 
 #include "AppToCpp_Server.h"
-#include "proto/AppToCppServer.pb.h"
+#include "AppToCppServer.pb.h"
 #include <google/protobuf/util/message_differencer.h>
 #include <list>
 #include <string>
@@ -54,19 +54,17 @@ grpc::Status AppToCppGrpcServer::get_all(::grpc::ServerContext* context, const a
 
 grpc::Status AppToCppGrpcServer::notification(::grpc::ServerContext* context, const ::app_cpp_server::rpcId* request,
             ::grpc::ServerWriter< ::app_cpp_server::rpcData>* writer) {
-    {
-        std::lock_guard<std::mutex> qlock_list(queuemutex_list);
-        client_list.push_front(request->id());
-    }
+    std::unique_lock<std::mutex> qlock_list(queuemutex_list);
+    cv_list.wait_for(qlock_list, std::chrono::seconds(1)); 
+    client_list.push_front(request->id());
+    qlock_list.unlock();
+    cv_list.notify_all();
     
     app_cpp_server::rpcData check;
     while(1) {
-        std::unique_lock<std::mutex> qlock(queuemutex_data);
-        cv_data.wait_for(qlock, std::chrono::seconds(1));
-        std::cout << "size of rpcdata is " << rpcdata.size() << std::endl;
-        std::cout << "printing rpc empty " << rpcdata.empty() << std::endl;
-        //cv_data.wait(qlock);
-        if(!rpcdata.empty() && !google::protobuf::util::MessageDifferencer::Equals(check, rpcdata.front())) {
+        if(!google::protobuf::util::MessageDifferencer::Equals(check, rpcdata.front())) {
+            std::unique_lock<std::mutex> qlock(queuemutex_data);
+            cv_data.wait_for(qlock, std::chrono::seconds(1));
             check = rpcdata.front();
             if(check.id() != request->id()) {          
                 writer->Write(check);
@@ -80,14 +78,13 @@ grpc::Status AppToCppGrpcServer::notification(::grpc::ServerContext* context, co
 
 grpc::Status AppToCppGrpcServer::set_state(::grpc::ServerContext* context, const ::app_cpp_server::rpcData* request, 
         ::app_cpp_server::rpcResponse* response) {
-    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("192.168.0.103:50051"), grpc::InsecureChannelCredentials()));
+    RelayServerClient RelayServer(grpc::CreateChannel(grpc::string("192.168.0.104:50051"), grpc::InsecureChannelCredentials()));
     int exit_state = RelayServer.set_state(request->room_name(), request->appliance_type(), request->appliance_name(), request->state());
     if(exit_state == 0) {
         {
             std::lock_guard<std::mutex> qlock(queuemutex_data);
             rpcdata.push(*request);
-            while(rpcdata.size() > 1)
-                rpcdata.pop();
+            rpcdata.pop();
         }
         for(std::vector<Room>::iterator it_room = data.iter_begin_data(); it_room != data.iter_end_data(); it_room++) {
             Room& room = *it_room;
@@ -117,6 +114,6 @@ void AppToCppGrpcServer::start_server() {
 
     // Wait for the server to shutdown. Note that some other thread must be
     // responsible for shutting down the server for this call to ever return.
-    server->Wait();
+    (*server).Wait();
 }
 

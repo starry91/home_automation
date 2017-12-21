@@ -44,7 +44,7 @@ Data read_from_config() {
             std::string appliance_type = it1.key().asString();
             Json::Value appliance_arr = *it1;
             Json::ValueIterator it2 = appliance_arr.begin();
-            RelayServerClient RelayServer(grpc::CreateChannel("192.168.0.103:50051", grpc::InsecureChannelCredentials()));
+            RelayServerClient RelayServer(grpc::CreateChannel("192.168.0.104:50051", grpc::InsecureChannelCredentials()));
             for (it2; it2 != appliance_arr.end(); it2++) {
                 std::string name = (*it2).asString();
                 int appliance_state = RelayServer.get_state(room_name, appliance_type, name);

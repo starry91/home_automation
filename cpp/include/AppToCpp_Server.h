@@ -2,7 +2,7 @@
 #ifndef APPTOCPP_SERVER_H
 #define APPTOCPP_SERVER_H
 
-#include "proto/AppToCppServer.grpc.pb.h"
+#include "AppToCppServer.grpc.pb.h"
 
 #include <iostream>
 #include <string>
@@ -25,9 +25,10 @@
 #include "Room.h"
 #include "Server.h"
 
-class AppToCppGrpcServer final : public app_cpp_server::AppCppServer::Service {
+class AppToCppGrpcServer : public app_cpp_server::AppCppServer::Service {
 private:
     Data data;
+    //int udp_sd;
 public:
     AppToCppGrpcServer(Data& d);
     void start_UDP_server();

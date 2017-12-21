@@ -12,7 +12,7 @@
  */
 
 #include "RelayServerClient.h"
-#include "proto/relay_server.pb.h"
+#include "relay_server.pb.h"
 #include <grpc++/grpc++.h>
 
 RelayServerClient::RelayServerClient(std::shared_ptr<grpc::Channel> channel)
@@ -33,7 +33,7 @@ int RelayServerClient::get_state(const std::string& room_name, const std::string
     grpc::ClientContext context;
 
     // The actual RPC.
-    grpc::Status status = stub_->get_state(&context, request, &reply);
+    grpc::Status status = (*stub_).get_state(&context, request, &reply);
 
     // Act upon its status.
     if (status.ok()) {
@@ -60,7 +60,7 @@ int RelayServerClient::set_state(const std::string& room_name, const std::string
     grpc::ClientContext context;
 
     // The actual RPC.
-    grpc::Status status = stub_->set_state(&context, request, &reply);
+    grpc::Status status = (*stub_).set_state(&context, request, &reply);
 
     // Act upon its status.
     if (status.ok()) {
