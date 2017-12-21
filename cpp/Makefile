@@ -69,10 +69,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/autotools_proj
-pkgincludedir = $(includedir)/autotools_proj
-pkglibdir = $(libdir)/autotools_proj
-pkglibexecdir = $(libexecdir)/autotools_proj
+pkgdatadir = $(datadir)/home-automation
+pkgincludedir = $(includedir)/home-automation
+pkglibdir = $(libdir)/home-automation
+pkglibexecdir = $(libexecdir)/home-automation
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -201,19 +201,19 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/tej/workspace/autotools_proj/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/tej/workspace/autotools_proj/missing autoconf
-AUTOHEADER = ${SHELL} /home/tej/workspace/autotools_proj/missing autoheader
-AUTOMAKE = ${SHELL} /home/tej/workspace/autotools_proj/missing automake-1.15
+AUTOCONF = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/missing autoconf
+AUTOHEADER = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/missing autoheader
+AUTOMAKE = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/missing automake-1.15
 AWK = gawk
 CPPFLAGS = 
 CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -std=c++14
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"autotools_proj\" -DPACKAGE_TARNAME=\"autotools_proj\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"autotools_proj\ 1.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"autotools_proj\" -DVERSION=\"1.0\"
+DEFS = -DPACKAGE_NAME=\"home-automation\" -DPACKAGE_TARNAME=\"home-automation\" -DPACKAGE_VERSION=\"0.1\" -DPACKAGE_STRING=\"home-automation\ 0.1\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"home-automation\" -DVERSION=\"0.1\"
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -228,25 +228,25 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/tej/workspace/autotools_proj/missing makeinfo
+MAKEINFO = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/missing makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
-PACKAGE = autotools_proj
+PACKAGE = home-automation
 PACKAGE_BUGREPORT = 
-PACKAGE_NAME = autotools_proj
-PACKAGE_STRING = autotools_proj 1.0
-PACKAGE_TARNAME = autotools_proj
+PACKAGE_NAME = home-automation
+PACKAGE_STRING = home-automation 0.1
+PACKAGE_TARNAME = home-automation
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.0
+PACKAGE_VERSION = 0.1
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = 
-VERSION = 1.0
-abs_builddir = /home/tej/workspace/autotools_proj
-abs_srcdir = /home/tej/workspace/autotools_proj
-abs_top_builddir = /home/tej/workspace/autotools_proj
-abs_top_srcdir = /home/tej/workspace/autotools_proj
+VERSION = 0.1
+abs_builddir = /home/tej/Desktop/projects/home_automation/cpp
+abs_srcdir = /home/tej/Desktop/projects/home_automation/cpp
+abs_top_builddir = /home/tej/Desktop/projects/home_automation/cpp
+abs_top_srcdir = /home/tej/Desktop/projects/home_automation/cpp
 ac_ct_CXX = g++
 am__include = include
 am__leading_dot = .
@@ -273,7 +273,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/tej/workspace/autotools_proj/install-sh
+install_sh = ${SHELL} /home/tej/Desktop/projects/home_automation/cpp/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
