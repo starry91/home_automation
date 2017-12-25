@@ -13,26 +13,24 @@
 
 #include "Data.h"
 
-Data::Data() {
-};
-
 void Data::addRoom(std::string name) {
-    room.push_back(Room(name));
+	room.push_back(Room(name));
 }
 
 Room& Data::getRoom(std::string name) {
-    for (std::vector<Room>::iterator it = room.begin(); it != room.end(); ++it) {
-        Room& room = *it;
-        if (room.getRoomName() == name)
-            return room;
-    }
-    //throw error;
+	for (std::vector<Room>::iterator it = room.begin(); it != room.end();
+			++it) {
+		Room& room = *it;
+		if (room.getRoomName() == name)
+			return room;
+	}
+	//throw error;
 }
 
 std::vector<Room>::iterator Data::iter_begin_data() {
-    return room.begin();
+	return room.begin();
 }
 
 std::vector<Room>::iterator Data::iter_end_data() {
-    return room.end();
+	return room.end();
 }

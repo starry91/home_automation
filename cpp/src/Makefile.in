@@ -89,7 +89,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-bin_PROGRAMS = homeserver$(EXEEXT)
+bin_PROGRAMS = homeserver$(EXEEXT) testclient$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -119,6 +119,16 @@ homeserver_DEPENDENCIES = ${LOCATION}/libgrpc++.a \
 	${LOCATION}/libgpr.a ${LOCATION}/libcares.a
 homeserver_LINK = $(CXXLD) $(homeserver_CXXFLAGS) $(CXXFLAGS) \
 	$(homeserver_LDFLAGS) $(LDFLAGS) -o $@
+am_testclient_OBJECTS = testclient-client1.$(OBJEXT) \
+	testclient-AppToCppServer.grpc.pb.$(OBJEXT) \
+	testclient-AppToCppServer.pb.$(OBJEXT)
+testclient_OBJECTS = $(am_testclient_OBJECTS)
+testclient_DEPENDENCIES = ${LOCATION}/libgrpc++.a \
+	${LOCATION}/libgrpc_unsecure.a \
+	${LOCATION}/libgrpc++_unsecure.a ${LOCATION}/libprotobuf.a \
+	${LOCATION}/libgpr.a ${LOCATION}/libcares.a
+testclient_LINK = $(CXXLD) $(testclient_CXXFLAGS) $(CXXFLAGS) \
+	$(testclient_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -152,8 +162,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(homeserver_SOURCES)
-DIST_SOURCES = $(homeserver_SOURCES)
+SOURCES = $(homeserver_SOURCES) $(testclient_SOURCES)
+DIST_SOURCES = $(homeserver_SOURCES) $(testclient_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -280,7 +290,11 @@ homeserver_SOURCES = Appliances.cpp AppToCpp_Server.cpp AppToCppServer.grpc.pb.c
 homeserver_LDFLAGS = -L/usr/local/lib64 -pthread -lz -ljsoncpp
 LOCATION = /usr/local/lib64
 homeserver_LDADD = ${LOCATION}/libgrpc++.a ${LOCATION}/libgrpc_unsecure.a ${LOCATION}/libgrpc++_unsecure.a ${LOCATION}/libprotobuf.a ${LOCATION}/libgpr.a ${LOCATION}/libcares.a
-homeserver_CXXFLAGS = -I../include -I/usr/local/include
+homeserver_CXXFLAGS = -I../include -I/usr/local/include -g
+testclient_SOURCES = client1.cpp AppToCppServer.grpc.pb.cc AppToCppServer.pb.cc
+testclient_LDFLAGS = -L/usr/local/lib64 -pthread -lz -ljsoncpp
+testclient_LDADD = ${LOCATION}/libgrpc++.a ${LOCATION}/libgrpc_unsecure.a ${LOCATION}/libgrpc++_unsecure.a ${LOCATION}/libprotobuf.a ${LOCATION}/libgpr.a ${LOCATION}/libcares.a
+testclient_CXXFLAGS = -I../include -I/usr/local/include -g
 all: all-am
 
 .SUFFIXES:
@@ -361,6 +375,10 @@ homeserver$(EXEEXT): $(homeserver_OBJECTS) $(homeserver_DEPENDENCIES) $(EXTRA_ho
 	@rm -f homeserver$(EXEEXT)
 	$(AM_V_CXXLD)$(homeserver_LINK) $(homeserver_OBJECTS) $(homeserver_LDADD) $(LIBS)
 
+testclient$(EXEEXT): $(testclient_OBJECTS) $(testclient_DEPENDENCIES) $(EXTRA_testclient_DEPENDENCIES) 
+	@rm -f testclient$(EXEEXT)
+	$(AM_V_CXXLD)$(testclient_LINK) $(testclient_OBJECTS) $(testclient_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -380,6 +398,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/homeserver-Server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/homeserver-relay_server.grpc.pb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/homeserver-relay_server.pb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testclient-AppToCppServer.grpc.pb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testclient-AppToCppServer.pb.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testclient-client1.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -576,6 +597,48 @@ homeserver-Server.obj: Server.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='Server.cpp' object='homeserver-Server.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(homeserver_CXXFLAGS) $(CXXFLAGS) -c -o homeserver-Server.obj `if test -f 'Server.cpp'; then $(CYGPATH_W) 'Server.cpp'; else $(CYGPATH_W) '$(srcdir)/Server.cpp'; fi`
+
+testclient-client1.o: client1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-client1.o -MD -MP -MF $(DEPDIR)/testclient-client1.Tpo -c -o testclient-client1.o `test -f 'client1.cpp' || echo '$(srcdir)/'`client1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-client1.Tpo $(DEPDIR)/testclient-client1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='client1.cpp' object='testclient-client1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-client1.o `test -f 'client1.cpp' || echo '$(srcdir)/'`client1.cpp
+
+testclient-client1.obj: client1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-client1.obj -MD -MP -MF $(DEPDIR)/testclient-client1.Tpo -c -o testclient-client1.obj `if test -f 'client1.cpp'; then $(CYGPATH_W) 'client1.cpp'; else $(CYGPATH_W) '$(srcdir)/client1.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-client1.Tpo $(DEPDIR)/testclient-client1.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='client1.cpp' object='testclient-client1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-client1.obj `if test -f 'client1.cpp'; then $(CYGPATH_W) 'client1.cpp'; else $(CYGPATH_W) '$(srcdir)/client1.cpp'; fi`
+
+testclient-AppToCppServer.grpc.pb.o: AppToCppServer.grpc.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-AppToCppServer.grpc.pb.o -MD -MP -MF $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Tpo -c -o testclient-AppToCppServer.grpc.pb.o `test -f 'AppToCppServer.grpc.pb.cc' || echo '$(srcdir)/'`AppToCppServer.grpc.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Tpo $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='AppToCppServer.grpc.pb.cc' object='testclient-AppToCppServer.grpc.pb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-AppToCppServer.grpc.pb.o `test -f 'AppToCppServer.grpc.pb.cc' || echo '$(srcdir)/'`AppToCppServer.grpc.pb.cc
+
+testclient-AppToCppServer.grpc.pb.obj: AppToCppServer.grpc.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-AppToCppServer.grpc.pb.obj -MD -MP -MF $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Tpo -c -o testclient-AppToCppServer.grpc.pb.obj `if test -f 'AppToCppServer.grpc.pb.cc'; then $(CYGPATH_W) 'AppToCppServer.grpc.pb.cc'; else $(CYGPATH_W) '$(srcdir)/AppToCppServer.grpc.pb.cc'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Tpo $(DEPDIR)/testclient-AppToCppServer.grpc.pb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='AppToCppServer.grpc.pb.cc' object='testclient-AppToCppServer.grpc.pb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-AppToCppServer.grpc.pb.obj `if test -f 'AppToCppServer.grpc.pb.cc'; then $(CYGPATH_W) 'AppToCppServer.grpc.pb.cc'; else $(CYGPATH_W) '$(srcdir)/AppToCppServer.grpc.pb.cc'; fi`
+
+testclient-AppToCppServer.pb.o: AppToCppServer.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-AppToCppServer.pb.o -MD -MP -MF $(DEPDIR)/testclient-AppToCppServer.pb.Tpo -c -o testclient-AppToCppServer.pb.o `test -f 'AppToCppServer.pb.cc' || echo '$(srcdir)/'`AppToCppServer.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-AppToCppServer.pb.Tpo $(DEPDIR)/testclient-AppToCppServer.pb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='AppToCppServer.pb.cc' object='testclient-AppToCppServer.pb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-AppToCppServer.pb.o `test -f 'AppToCppServer.pb.cc' || echo '$(srcdir)/'`AppToCppServer.pb.cc
+
+testclient-AppToCppServer.pb.obj: AppToCppServer.pb.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -MT testclient-AppToCppServer.pb.obj -MD -MP -MF $(DEPDIR)/testclient-AppToCppServer.pb.Tpo -c -o testclient-AppToCppServer.pb.obj `if test -f 'AppToCppServer.pb.cc'; then $(CYGPATH_W) 'AppToCppServer.pb.cc'; else $(CYGPATH_W) '$(srcdir)/AppToCppServer.pb.cc'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/testclient-AppToCppServer.pb.Tpo $(DEPDIR)/testclient-AppToCppServer.pb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='AppToCppServer.pb.cc' object='testclient-AppToCppServer.pb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testclient_CXXFLAGS) $(CXXFLAGS) -c -o testclient-AppToCppServer.pb.obj `if test -f 'AppToCppServer.pb.cc'; then $(CYGPATH_W) 'AppToCppServer.pb.cc'; else $(CYGPATH_W) '$(srcdir)/AppToCppServer.pb.cc'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

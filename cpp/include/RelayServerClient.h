@@ -31,6 +31,8 @@ public:
 
     RelayServerClient(std::shared_ptr<grpc::Channel> channel);
 
+    RelayServerClient();
+
     // Assembles the client's payload, sends it and presents the response back
     // from the server.
 

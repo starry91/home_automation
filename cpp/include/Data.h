@@ -30,7 +30,6 @@ class Data {
 private:
     std::vector<Room> room;
 public:
-    Data();
     void addRoom(std::string name);
     Room& getRoom(std::string name);
     std::vector<Room>::iterator iter_begin_data();

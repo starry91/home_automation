@@ -19,11 +19,11 @@
 #include <Configuration.h>
 
 int main(int argc, char** argv) {
-    Data data = read_from_config();
-    std::thread t1(UDPListenAndRespond, 8080);
-    AppToCppGrpcServer server(data);
-    server.start_server();
-    t1.join();
-    return 0;
+	Data data = read_from_config();
+	std::thread t1(UDPListenAndRespond, 8080);
+	AppToCppGrpcServer server(data);
+	server.start_server();
+	t1.join();
+	return 0;
 }
 
