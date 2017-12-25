@@ -1,6 +1,0 @@
-echo "Here are all parameters you called this script with: $@"
-echo "Here is parameter 1: $1"
-echo "Which parameter do you want to be shown? "
-read number
-args=("$@")
-echo "${args[$number-1]}"
