@@ -13,49 +13,49 @@
 
 #include "Room.h"
 
-Room::Room(const std::string room_Name)
-: room_name(room_Name) {
-};
+Room::Room(const std::string room_Name) :
+		room_name(room_Name) {
+}
 
 std::string Room::getRoomName() {
-    return room_name;
+	return room_name;
 }
 
 int Room::getApplianceState(std::string name) {
-    for (std::vector<Appliance>::iterator it = appliances.begin(); it != appliances.end(); ++it) {
-        Appliance temp = *it;
-        if (temp.getName() == name)
-            return temp.getState();
-    };
-    return -1;
+	for (std::vector<Appliance>::iterator it = appliances.begin();
+			it != appliances.end(); ++it) {
+		Appliance temp = *it;
+		if (temp.getName() == name)
+			return temp.getState();
+	};
+	return -1;
 }
 
-
 void Room::setRoomName(std::string room_Name) {
-    room_name = room_Name;
+	room_name = room_Name;
 }
 
 void Room::addAppliance(std::string name, std::string type, int state) {
-    appliances.push_back(Appliance(name, Appliance::State(state), type));
+	appliances.push_back(Appliance(name, Appliance::State(state), type));
 }
 
-
 void Room::setApplianceState(std::string name, int state) {
-    for (std::vector<Appliance>::iterator it = appliances.begin(); it != appliances.end(); ++it) {
-        Appliance& temp = *it;
-        if (temp.getName() == name) {
-            temp.setState(Appliance::State(state));
-            break;
-        }
+	for (std::vector<Appliance>::iterator it = appliances.begin();
+			it != appliances.end(); ++it) {
+		Appliance& temp = *it;
+		if (temp.getName() == name) {
+			temp.setState(Appliance::State(state));
+			break;
+		}
 
-    }
+	}
 }
 
 std::vector<Appliance>::iterator Room::iter_begin_appliance() {
-    return appliances.begin();
+	return appliances.begin();
 }
 
 std::vector<Appliance>::iterator Room::iter_end_appliance() {
-    return appliances.end();
+	return appliances.end();
 }
 

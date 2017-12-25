@@ -14,35 +14,36 @@
 #include "Appliances.h"
 
 void Appliance::setName(std::string s) {
-    name = s;
+	name = s;
 }
 
 std::string Appliance::getName() {
-    return name;
+	return name;
 }
 
 void Appliance::setState(State n) {
-    if (Appliance::State::OFF <= n && Appliance::State::ON >= n)
-        state = n;
-    else {
-        throw (std::string("Invalid State value") + std::to_string(static_cast<int> (n)));
-    }
+	if (Appliance::State::OFF <= n && Appliance::State::ON >= n)
+		state = n;
+	else {
+		throw(std::string("Invalid State value")
+				+ std::to_string(static_cast<int>(n)));
+	}
 }
 
 int Appliance::getState() {
-    return static_cast<int> (state);
+	return static_cast<int>(state);
 }
 
 void Appliance::setType(std::string s) {
-    type = s;
+	type = s;
 }
 
 std::string Appliance::getType() {
-    return type;
+	return type;
 }
 
 Appliance::Appliance(std::string s, State n, std::string type = "None") {
-    this->name = s;
-    this->setState(n);
-    this->type = type;
+	this->name = s;
+	this->setState(n);
+	this->type = type;
 }

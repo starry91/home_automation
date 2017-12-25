@@ -1,5 +1,3 @@
-hi
-bye
-sd
-dsds
-eof
+This server should be running on raspberry pi acting as a communication
+channel between main server and arduino.
+

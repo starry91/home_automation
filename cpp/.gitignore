@@ -1,0 +1,13 @@
+autom4te.cache/
+config.log
+src/.deps/
+src/*.o
+src/homeserver
+include/AppToCppServer.grpc.pb.h
+include/AppToCppServer.pb.h
+include/relay_server.grpc.pb.h
+include/relay_server.pb.h
+src/AppToCppServer.grpc.pb.cc
+src/AppToCppServer.pb.cc
+src/relay_server.grpc.pb.cc
+src/relay_server.pb.cc
